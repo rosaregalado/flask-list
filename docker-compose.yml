@@ -1,0 +1,15 @@
+version: "3.7"
+
+services:
+  sql:
+    image: sqlalchemy
+    restart: always
+  web:
+    build: .
+    command: flask run
+    volumes:
+      - .:/app
+    ports:
+      - "5000:5000"
+    depends_on:
+      - sql
